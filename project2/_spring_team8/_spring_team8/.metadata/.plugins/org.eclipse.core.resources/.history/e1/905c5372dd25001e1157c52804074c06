@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: "galmuri";
+    src: url("/resources/fonts/Galmuri9.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "stardust";
+    src: url("/resources/fonts/PF스타더스트.ttf") format("truetype");
+  }
+
+body {
+    font-family: "stardust", sans-serif;
+    position: relative;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-repeat: repeat;
+  animation-name: waveAnimation;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  background-image: url("/resources/images/bgjoin.PNG");
+  }
+
+  @keyframes waveAnimation {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
+  }
+  
+
+ .joinbox{
+    width: 600px;
+    position: absolute;
+    /* left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+   display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    
+  } 
+  .logobox{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    width: 600px;
+    height: 100px;
+    border: 2px solid black;
+    
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 15px;
+    font-size: 18px;
+
+}
+
+.logotitle{
+font-family: "galmuri",sans-serif;
+font-weight: 600;
+margin: 0 0 0 0;
+font-size: 80px;
+letter-spacing: 5px;
+color: lightgray;
+text-decoration-style: solid;
+text-shadow: 4px 4px 4px gray;
+
+}
+
+.logosub{
+    font-size: 25px;
+   
+}
+   .formbox{
+   margin: auto;
+  
+  } 
+
+
+  .jointitle{
+    float: left;
+    width: 100px;
+    margin-left: 10px;
+  }
+
+  .ment{
+   margin-left: 110px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+  }
+
+  .joincontainer{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  } 

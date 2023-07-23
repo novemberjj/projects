@@ -1,0 +1,92 @@
+/* 제목 */
+.title1{
+    text-align: center;
+    padding: 20px;  
+    top: 50%;
+    left: 50%;
+    transform: translate(41%, -70%);
+    margin-top: 350px;
+    border: 4px solid black;
+    width: 50%;
+    height: 50%;
+    box-shadow: 3px 3px 3px 3px gray;
+    border-radius: 15px;
+}
+
+/* 이미지 */
+.image_title{
+    width: 10%;
+    height: 10%;
+    left: 50%;
+    top: 50%;
+    transform: translate(220%, 700%);
+}
+
+.img1, .img3{
+    top: 40%;
+    left: 40%; 
+    transform: translate(500%, 200%); 
+}
+
+/* 토끼 이미지 */
+.with{
+    animation-name: move;
+    animation-duration: 2.8s;
+    animation-iteration-count: 10000;
+    position: absolute;
+}
+
+.img1{
+    transform: translate(220%,155%);
+    /* animation-name: move;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    position: absolute; */
+}
+/* .img2{
+    margin-right: 1230px;
+    transform: translate(1400%,800%); */
+    /* animation-name: msgMove;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    position: absolute; */
+    /* margin-top: 300px; */
+    /* transform: translate(-50%); */
+/* } */
+/* @keyframes msgMove{
+    from{
+        top: 20px;
+    }
+    50%{
+        top: 50px;
+    }
+    to{
+        top: ;
+    }
+
+} */
+
+/* 토끼사진 애니메이션 */
+@keyframes move{
+    from{left: 0%;}
+    50%{left: 27%;}
+    to{left: 45%;}
+}
+
+/* 우체통 사진 */
+.img3{
+    /* margin-top: ; */
+    transform: translate(1670%,159%);
+    /* margin-right: 500px; */
+}
+
+/* 계속하기 버튼 */
+.main1{
+    text-decoration: none;
+    border-color: #000;
+    background-color: #000;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    padding: 5px;
+}

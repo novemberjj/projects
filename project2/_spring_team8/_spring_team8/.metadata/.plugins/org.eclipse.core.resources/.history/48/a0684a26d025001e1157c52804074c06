@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.markup.www.repository.FileDAO">
+	  <insert id="insertFile">
+	  	insert into file(uuid, save_dir, file_name, file_type, bno, file_size)
+	  	values(#{uuid}, #{saveDir}, #{fileName}, #{fileType}, #{bno}, #{fileSize})
+	  </insert>
+	  <select id="getFileList" resultType="com.markup.www.domain.FileVO">
+	  select * from file where bno = #{bno}
+	  </select>
+	  <select id="getFileListToBno" resultType="com.markup.www.domain.FileVO">
+	  	select * from file where <include refid="searchBno"></include> order by bno desc
+	  </select>
+	  
+	<sql id="searchBno">
+	    <if test="bnos != null">
+	        <trim prefix="(" suffix=")" suffixOverrides="or">
+	            <foreach collection="bnosArr" item="bno" separator=" ">
+	                bno = #{bno} or
+	            </foreach>
+	        </trim>
+	    </if>
+	</sql>
+  </mapper>

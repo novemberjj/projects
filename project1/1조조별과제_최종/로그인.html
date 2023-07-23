@@ -1,0 +1,107 @@
+<!doctype HTML>
+<html lnag="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>네이버 로그인</title>
+    <link rel="stylesheet" href="로그인.css">
+    <script src="https://kit.fontawesome.com/51db22a717.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="main-wrap">
+            <header>
+                <div class="sel-lang-wrap">
+                    <select class="lang-select">
+                        <option>한국어</option>
+                        <option>English</option>
+                    </select>
+                </div>
+                <div class="logo-wrap"><a href="조별과제배열.html">
+                    <img src="image/NEWJEANS.png"></a>
+                </div>
+            </header>
+
+            <form action="">
+                <section class="login-input-section-wrap">
+                    <div class="login-input-wrap">
+                        <input placeholder="아이디" type="text" id="user_id"></input>
+                        <!-- <button type="button" id="testBtn" onclick="exID()">버튼</button> -->
+                    </div>
+                    <div class="login-input-wrap password-wrap">
+                        <input placeholder="비밀번호" type="password" id="user_pw1"></input>
+                    </div>
+                    <div class="login-stay-sign-in">
+                        <i class="far fa-check-circle"></i>
+                        <span> 로그인 상태 유지</span>
+                    </div>
+                    <div class="login-error-info">
+                        <h3 class="errorText" id="errorText"></h3>
+                    </div>
+                    <div class="login-button-wrap">
+                        <button type="button" id="loginBtn">로그인</button>
+                    </div>
+            </form>
+            <div class="menuBox">
+                <a href="https://nid.naver.com/user2/help/idInquiry.nhn?menu=idinquiry" class="menu1" name="idfound">아이디
+                    찾기</a> | <a class="menu1" href="https://nid.naver.com/user2/help/pwInquiry.nhn?menu=pwinquiry">비밀번호
+                    찾기</a> | <a class="menu1" href="회원가입.html">회원가입</a><br>
+            </div>
+            </section>
+            <section class="Easy-sgin-in-wrap">
+                <h2>간편한 로그인</h2>
+                <ul class="sign-button-list">
+                    <li><button><i class="fas fa-qrcode"></i><span> QR 코드</span></button></li>
+                    <li><button><i class="fab fa-facebook-square"></i><span>Facebook</span></button></li>
+                    <li><button><i class="fab fa-line"></i><span>Kakao Talk</span></button></li>
+                </ul>
+                <p class="forget-msg">Forgot your Username or Password? | Sign up</p>
+            </section>
+            <footer>
+                <div class="copyright-wrap">
+                    <span> <img src="image/NEWJEANS.png"> Copyright © NAVER Corp. All Rights Reserved.</span>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+
+        let msg = '아이디(로그인 전용 아이디)를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요.'
+        let msg3 = '잘못된 비밀번호 입니다.';
+        memberMap = new Map();
+
+
+
+        function exUser() {
+            memberMap.set('abc123', '123456');
+            memberMap.set('aaa111', 'qqq111');
+            memberMap.set('bbb111', 'www111');
+            memberMap.set('ccc111', 'eee111');
+        }
+
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            const id = document.getElementById('user_id').value;
+            let pw = document.getElementById('user_pw1').value;
+            exUser();
+          
+            if (memberMap.get(id) == undefined) {
+                document.getElementById('errorText').innerText = msg;
+                console.log(memberMap.get(id));
+                return false;
+            } else if (memberMap.get(id) != pw) {
+                document.getElementById('errorText').innerText = msg3;
+                return false;
+            } else {
+                alert('로그인 완료\n확인 시 메인화면으로 넘어갑니다.')
+                window.location.href = '로그인후.html';
+                return true;
+            }
+        })
+    </script>
+
+</body>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+</html>

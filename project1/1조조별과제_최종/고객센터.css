@@ -1,0 +1,200 @@
+/* 전체 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #fff;
+}
+
+html {
+    font-size: 10px;
+}
+
+ul, li {
+    list-style: none;
+}
+
+/* 등록/취소 버튼 */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.board_wrap {
+    width: 1000px;
+    margin: 100px auto;
+}
+/* 고객센터 제목 */
+.board_title {
+    margin-bottom: 30px;
+}
+/* 고객센터 제목 (굵기) */
+.board_title strong {
+    font-size: 3rem;
+}
+
+.board_title p {
+    margin-top: 5px;
+    font-size: 1.4rem;
+}
+
+/* 등록/취소 버튼 */
+.bt_wrap {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.bt_wrap a {
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    font-size: 1.4rem;
+}
+
+.bt_wrap a:first-child {
+    margin-left: 0;
+}
+/* 등록 버튼 */
+.bt_wrap a.on {
+    background: #000;
+    color: #fff;
+}
+
+.board_write {
+    border-top: 2px solid #000;
+}
+
+.board_write .title,
+.board_write .info {
+    padding: 15px;
+}
+
+/* 작성자, 비밀번호, 이메일, 핸드폰 번호*/
+.board_write .info {
+    border-top: 1px dashed #ddd;
+    border-bottom: 1px solid #000;
+    font-size: 0;
+}
+
+.board_write .title dl {
+    font-size: 0;
+}
+
+.board_write .info dl {
+    display: inline-block;
+    width: 50%;
+    vertical-align: middle;
+}
+
+.board_write .title dt,
+.board_write .title dd,
+.board_write .info dt,
+.board_write .info dd {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.4rem;
+}
+
+.board_write .title dt,
+.board_write .info dt {
+    width: 100px;
+}
+
+.board_write .title dd {
+    width: calc(100% - 100px);
+}
+
+.board_write .title input[type="text"],
+.board_write .info input[type="text"],
+.board_write .info input[type="password"] {
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.board_write .title input[type="text"] {
+    width: 80%;
+}
+
+.board_write .cont {
+    border-bottom: 1px solid #000;
+}
+
+.board_write .cont textarea {
+    display: block;
+    width: 100%;
+    height: 300px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 0;
+    resize: vertical;
+}
+
+p{
+    padding-top: 10px;
+}
+
+/* 내용 */
+.memo{
+    font-size: 1.5rem;
+    padding: 10px;
+}
+
+/* 이메일 */
+.email{
+    margin-top: 10px;
+}
+.email2{
+    text-align: center;
+    width: 120px;
+    height: 28px;
+    font-size: 1.4rem;
+}
+
+/* 핸드폰 번호 */
+.tel{
+    margin-top: 10px;
+}
+.num1{
+    text-align: center;
+}
+
+/* 작성자 */
+.writer{
+    width: 270px; 
+    height: 32px;
+}
+
+/* 비밀번호 */
+.pw{
+    width: 270px; 
+    height: 32px;
+}
+
+
+/* 국번 */
+.num{
+    width: 100px; 
+    height: 28px;
+}
+
+.num1{
+    width: 100px; 
+    height: 25px;
+}
+
+/* 이메일 선택 */
+option{
+    text-align: center;
+}
+
+.mail_Select{
+    width: 123px; 
+    height: 33px;
+}

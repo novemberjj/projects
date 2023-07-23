@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lnag="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>뉴진스 : 회원가입</title>
+    <link rel="stylesheet" href="이용약관.css">
+    <link rel="stylesheet"
+         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<body>
+    <div id="header">
+        <a href="조별과제배열.html"
+            title="네이버 회원가입 페이지 보러가기"><img src="image/NEWJEANS.png" id="logo"></a>
+    </div>
+
+    <div id="wrapper">
+        <div id="content">
+            <div>
+                <h3 class="join_title">
+                    <ins class="choise">
+                        <span class="material-symbols-outlined greenCheak1">
+                            check_circle
+                        </span>
+                        뉴진스 이용약관, 개인정보수집 및 이용, 위치기반서비스 이용약관(선택),
+                        프로모션 정부 수신(선택)에 모두 동의합니다.
+                    </ins>
+                </h3>
+            </div>
+
+            <div>
+                <h3 class="join_title title1">
+                    <span class="material-symbols-outlined greenCheak2">
+                        check_circle
+                    </span>
+                    뉴진스 이용약관 동의 <ins id="agree">(필수)</ins>
+                </h3>
+                <div class="box1">
+                    <p>
+                        <strong>여러분을 환영합니다.</strong> <br><br>
+                        뉴진스 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. <br>
+                        본 약관은 다양한 네이버 서비스의 이용과 관련하여 뉴진스 서비스를 제공하는 뉴진스 주식회사(이하 ‘뉴진스’)와 이를 이용하는 뉴진스 서비스 회원(이하 ‘회원’) 또는
+                        비회원과의 관계를 설명하며, <br>
+                        아울러 여러분의 뉴진스 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
+                        뉴진스 서비스를 이용하시거나 네이버 서비스 회원으로 가입하실 경우 여러분은 본 약관 및 관련 운영 정책을 확인하거나 동의하게 되므로, <br>
+                        잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="join_title title1">
+                    <span class="material-symbols-outlined greenCheak2">
+                        check_circle
+                    </span>
+                    개인정보 수집 및 이용동의 <ins id="agree">(필수)</ins>
+                </h3>
+                <div class="box2">
+                    <p>
+                        개인정보보호법에 따라 네이버에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시
+                        불이익에 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="join_title title1">
+                    <span class="material-symbols-outlined grayCheak" id="grayCheak" onclick="change_btn(event);">
+                        check_circle
+                    </span>
+                    위치기반서비스 이용약관 동의 <ins id="agree">(선택)</ins>
+                </h3>
+                <div class="box3">
+                    <p>
+                        위치기반 서비스 이용약관에 동의하시면, <strong> 위치를 활용한 광고 정보 수신등을 포함하는 뉴진스 위치기반 서비스</strong>를 이용할 수 있습니다.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="join_title title1">
+                    <span class="material-symbols-outlined grayCheak" id="grayCheak" onclick="change_btn(event);">
+                        check_circle
+                    </span>
+                    프로모션 정부 수신 동의 <ins id="agree">(선택)</ins>
+                </h3>
+                <div class="box4">
+                    <p>
+                        뉴진스 서비스 및 제휴 이벤트・혜택 등의 정보를 휴대전화(뉴진스앱 알림 또는 문자), 이메일로 받을 수 있습니다. 일부 서비스(별개의 회원 체계 운영, 뉴진스 가입 후 추가
+                        가입하는 서비스 등)의 경우, 수신에 대해 별도로 안내드리며 동의를 구합니다.
+                    </p>
+                </div>
+            </div>
+            <!-- 버튼 -->
+            <div class="btn_area">
+                <button type="button" id="btnJoin1">
+                    <span>취소</span>
+                </button>
+                <button type="button" id="btnJoin2">
+                    <span>확인</span>
+                </button>
+            </div>
+            <div class="w3">
+                <p class="forget-msg">
+                    회사, 동아리 등 단체에서 사용할 ID가 필요하세요? <br><br>
+                    <a href="#" class="team">단체 회원 가입</a>
+                </p>
+                <br>
+                <div class="copyright-wrap">
+                    <span class="cheakbtn">
+                        이용약관 | <strong>개인정보처리방침</strong> | 책임의 한계와 법적고지 | 회원정보 고객센터
+                    </span>
+                    <p>© Newjeans Corp.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        const grayCheakElems = document.querySelectorAll(".grayCheak");
+
+        function change_btn(e) {
+            grayCheakElems.forEach(function (btn, i) {
+                if (e.currentTarget == btn) {
+                    btn.classList.add("active");
+                    btn.style.color = "green"; // 추가: 클릭한 span 요소의 텍스트 색상을 초록색으로 변경
+                }
+            });
+            console.log(e.currentTarget);
+        }
+
+        const btnJoin1 = document.getElementById("btnJoin1");
+        const btnJoin2 = document.getElementById("btnJoin2");
+
+        btnJoin1.addEventListener("click", function () {
+            window.location.href = "조별과제배열.html";
+        });
+
+        btnJoin2.addEventListener("click", function () {
+            window.location.href = "회원가입.html";
+        });
+    </script>
+</body>
+
+</html>

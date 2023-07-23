@@ -1,0 +1,42 @@
+/* 기본 스타일 */
+
+
+
+* {
+	text-align: center;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+}
+
+.imageBox {
+	margin-left: 10px;
+}
+
+.boardBox {
+	margin-right: 10px;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}
+
+
+/* 미디어 쿼리 */
+@media screen and (max-width: 768px) {
+	/* 화면 너비가 768px 이하일 때 적용되는 스타일 */
+	.container {
+		flex-direction: column;
+		align-items: center;
+	}
+	.imageBox{
+		margin-top: 10px
+	} 
+	
+	.boardBox {
+		margin-bottom: 10px;
+	}
+}

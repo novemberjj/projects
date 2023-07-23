@@ -1,0 +1,172 @@
+package com.markup.www.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import com.markup.www.domain.BoardDTO;
+import com.markup.www.domain.BoardVO;
+import com.markup.www.domain.FileVO;
+import com.markup.www.domain.PagingVO;
+import com.markup.www.repository.BoardDAO;
+import com.markup.www.repository.FileDAO;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Service
+public class BoardServiceImpl implements BoardService {
+
+	@Inject
+	private BoardDAO bdao;
+
+	@Inject
+	private FileDAO fdao;
+
+	@Override
+	public List<BoardVO> getList(PagingVO pgvo) {
+		log.info(">>>BoardDAO : getList");
+		return bdao.getList(pgvo);
+	}
+
+	@Override
+	public List<BoardDTO> getDTOList(PagingVO pgvo) {
+		log.info(">>>BoardDAO : getDTOList");
+		List<BoardVO> list = bdao.getList(pgvo);
+		String bnoList = "";
+		for (int i = 0; i < list.size(); i++) {
+			bnoList = bnoList + (list.get(i).getBno() + ",");
+		}
+
+		FileVO fvo = new FileVO();
+		fvo.setBnos(bnoList);
+		List<FileVO> flist = fdao.getFileListToBno(fvo);
+		List<BoardDTO> rbdto = new ArrayList<BoardDTO>();
+		
+		for (int j = 0; j < list.size(); j++) {
+			BoardDTO bdto = new BoardDTO();
+			bdto.setBvo(list.get(j));
+			List<FileVO> rfvo = new ArrayList<FileVO>();
+			for (int i = 0; i < flist.size(); i++) {
+				if (list.get(j).getBno() == flist.get(i).getBno()) {
+					rfvo.add(flist.get(i));
+				}
+			}
+			bdto.setfList(rfvo);
+			rbdto.add(bdto);
+		}
+		
+		return rbdto;
+	}
+
+	@Override
+	public String getBoardLike(int bno) {
+		log.info(">>>BoardDAO : getBoardLike");
+		return bdao.getBoardLike(bno);
+	}
+
+	@Override
+	public List<BoardVO> getPopList(PagingVO pgvo) {
+		log.info(">>>BoardDAO : getPopList");
+		return bdao.getPopList(pgvo);
+	}
+
+	@Override
+	public int register(BoardDTO bdto) {
+		log.info(">>>BoardDAO : register");
+		// 기존 게시글에 대한 내용 DB 저장 내용 호출
+		int isOk = bdao.insert(bdto.getBvo());
+		if (bdto.getfList() == null) { // 파일이 없다를 의미
+			isOk *= 1; // 그냥 성공한걸로 치고~
+		} else {
+			// bvo가 DB에 들어가고, 파일 개수가 있다면...
+			if (isOk > 0 && bdto.getfList().size() > 0) {
+				// register는 등록시 bno가 결정되어있지 않음.
+				// int bno = bdto.getBvo().getBno(); //update시는 가능.
+				int bno = bdao.selectBno(); // 방금 저장된 bvo의 bno 리턴받기
+				// fList의 모든 file의 bno를 방금받은 bno로 set
+				for (FileVO fvo : bdto.getfList()) {
+					fvo.setBno(bno);
+					log.info(">>>> insert File :" + fvo.toString());
+					isOk *= fdao.insertFile(fvo);
+				}
+			}
+		}
+		return isOk;
+	}
+
+	@Override
+	public BoardDTO getDetailFile(int bno) {
+		log.info(">>>BoardDAO : getDetailFile");
+		BoardDTO bdto = new BoardDTO();
+		bdto.setBvo(bdao.getDetail(bno)); // bvo 호출
+		bdto.setfList(fdao.getFileList(bno)); // fList 호출
+
+		log.info(">>>>>>>>>>>>>>>>>>bdao.getDetail" + bdao.getDetail(bno));
+		log.info(">>>> fdao.getFileList" + fdao.getFileList(bno));
+		return bdto;
+	}
+
+	@Override
+	public int modifyFile(BoardDTO bdto) {
+		log.info(">>>BoardDAO : modifyFile");
+		BoardVO tmpBoard = bdao.getDetail(bdto.getBvo().getBno()); // 해당 글의 게시글 호출
+
+		int isOk = bdao.updateBoard(bdto.getBvo()); // 기존 보드내용 update
+		if (bdto.getfList() == null) {
+			isOk *= 1;
+		} else {
+			if (isOk > 0 && bdto.getfList().size() > 0) {
+				int bno = bdto.getBvo().getBno();
+				// fList의 모든 file의 bno를 방금받은 bno로 set
+				for (FileVO fvo : bdto.getfList()) {
+					fvo.setBno(bno);
+					log.info(">>>> insert File :" + fvo.toString());
+					isOk *= fdao.insertFile(fvo); // 추가한 파일 추가
+					// 삭제는 별도로.
+				}
+			}
+		}
+		return isOk;
+	}
+
+	@Override
+	public int remove(int bno) {
+		log.info(">>>BoardDAO : remove");
+		return bdao.deleteBoard(bno);
+	}
+
+	@Override
+	public List<BoardVO> getblackList() {
+		log.info(">>>BoardDAO : getblackList");
+		return bdao.getblacklist();
+	}
+
+	@Override
+	public int restore(int bno) {
+		log.info(">>>BoardDAO : restore");
+		return bdao.restoreBoard(bno);
+	}
+
+	@Override
+	public int updateLikeUser(BoardVO bvo) {
+		log.info(">>>BoardDAO : updateLikeUser");
+		return bdao.updateLikeUser(bvo);
+	}
+
+	@Override
+	public List<BoardVO> getlikeList(PagingVO pgvo) {
+		// TODO Auto-generated method stub
+		return bdao.getlikeList(pgvo);
+	}
+
+	@Override
+	public List<BoardVO> getpostList(PagingVO pgvo) {
+		// TODO Auto-generated method stub
+		return bdao.getpostList(pgvo);
+	}
+
+}

@@ -1,0 +1,166 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    background: #f5f6f7;
+    font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
+
+#logo {
+    width: 280px;
+    height: 40px;
+    cursor: pointer;
+}
+
+#header {
+    padding-top: 62px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+
+#content {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 460px;
+}
+
+/* 취소, 확인 버튼 */
+.btn_area {
+    margin: 30px 91px;
+    text-align: center;
+    transform: translate(0%, 5%);
+    /* margin-bottom: 10px; */
+    /* padding-bottom: 5px; */
+}
+
+/* 취소버튼 */
+#btnJoin1 {
+    width: 230px;
+    height: 53px;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: gray;
+    font-size: 20px;
+    font-weight: 400;
+    transform: translate(-45%, 0%);
+}
+
+/* 확인버튼 */
+#btnJoin2 {
+    width: 230px;
+    height: 53px;
+    padding: 20;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #000;
+    font-size: 20px;
+    font-weight: 400;
+    transform: translate(65%, -100%);
+}
+
+/* 하단부분 */
+.w3{
+    text-align: center;
+    transform: translate(0%, -30%);
+}
+
+/* 설명 box */
+.box1{
+    border: 2px solid black;
+    background-color: rgb(250, 250, 250);
+    width: 500px;
+    height: 220px;
+}
+.box2{
+    border: 2px solid black;
+    width: 500px;
+    height: 100px;
+}
+.box3{
+    border: 2px solid black;
+    width: 500px;
+    height: 70px;
+}
+.box4{
+    border: 2px solid black;
+    width: 500px;
+    height: 110px;
+}
+
+/* 단체 회원 가입 버튼  */
+.team{
+    margin-bottom: 2px;
+    color: #555555;
+    margin-top: 10px;
+}
+
+/* 체크 박스 */
+.choise{
+    font-size: 15px;
+    text-align: center;
+    margin-left: 20px;
+    transform: translate(20%, 10%);
+}
+
+/* 제목 */
+.join_title{
+    font-weight: 700;
+}
+
+/* 선택된 체크 박스 */
+.greenCheak1{
+    width: 10px;
+    height: 10px;
+    transform: translate(-190%, 80%);
+    top: 20px;
+    /* margin-left: px; */
+    color: green;
+}
+.greenCheak2{
+    width: 10px;
+    height: 10px;
+    transform: translate(-150%, 80%);
+    top: 20px;
+    /* left: 50px; */
+    /* margin-left: px; */
+    color: green;
+}
+
+/* 제목 : 네이버 이용약관 */
+.title1{
+    /* left: 10px; */
+    transform: translate(3.5%, 20%);
+}
+.greenCheak3{
+    width: 10px;
+    height: 10px;
+    transform: translate(-150%, 80%);
+    top: 20px;
+    color: green;
+}
+
+/* 선택 부분 => 그레이 박스 */
+.grayCheak{
+    /* transform: translate(3.5%, 20%); */
+    width: 10px;
+    height: 10px;
+    transform: translate(-150%, 80%);
+    top: 20px;
+}
+
+.grayCheak:hover,
+.grayCheak:active,
+.grayCheak::after{
+    color: green;
+}
