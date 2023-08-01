@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+.joinBigBox {
+	overflow: hidden;
+	width: 800px;
+	height: 800px;
+	background-color: #ff80c0;
+}
+
+.joinMidBox {
+	width: 2400px;
+	height: 100%;
+	background-color: #80ffff;
+}
+
+.joinMinBox {
+	width: 800px;
+	height: 100%;
+	display: inline-block;
+}
+
+.joinMinBox1 {
+	background-color: #ff8000;
+}
+
+.joinMinBox2 {
+	background-color: #87f38f;
+}
+
+.joinMinBox3 {
+	background-color: #8080ff;
+}

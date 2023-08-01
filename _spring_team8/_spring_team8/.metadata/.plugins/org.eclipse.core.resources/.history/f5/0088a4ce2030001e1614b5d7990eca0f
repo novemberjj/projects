@@ -1,0 +1,62 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Pretendard, 'Malgun Gothic', sans-serif;
+}
+
+.dropBox {
+	width: 600px;
+	height: 400px;
+	margin: .6rem;
+	overflow: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+	border: 4px dashed #ddd;
+	user-select: none;
+	transition: 0.4s;
+}
+
+.regContentBox {
+	padding: 10px;
+	resize: none;
+	width: 400px;
+	height: 300px;
+}
+
+.regBigBox {
+	position: absolute;
+	top: 100px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+/* 드롭 반응 */
+.dropBox.active {
+	background: #ddd;
+}
+
+.dropBox h1 {
+	font-size: 1.8rem;
+}
+
+.preview-image {
+	width: 500px;
+	height: 500px;
+}
+
+#imageZone {
+	width: 200px;
+	height: 200px;
+	border: 1px;
+}
+/* ----------- */
+@import
+	url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css')
+	;
+
+.tagify {
+	width: 100%;
+	max-width: 700px;
+}

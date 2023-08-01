@@ -1,0 +1,369 @@
+
+document.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('followBtn')){
+        console.log(e.target);
+        let userId=e.target.dataset.id;
+        let sessionId=e.target.dataset.ses;
+
+        console.log('userId',userId,'sessionId',sessionId);
+        if(e.target.classList.contains('unfollowBtn')){
+            unfollowUser(userId,sessionId).then(result=>{
+                e.target.textContent='팔로우';
+            });
+        }else{
+            followUser(userId,sessionId).then(result=>{
+                e.target.textContent='언팔로우';
+            });
+        }
+        e.target.classList.toggle('unfollowBtn');
+    }
+})
+  
+
+async function followUser(userId, sessionId){
+    let followData={
+        following:userId,
+        follower:sessionId
+    }
+   
+try{
+    const url='/member/follow';
+    const config={
+        method:"post",
+        headers:{
+            'content-type':'application/json; charset=utf-8'
+        },
+        body:JSON.stringify(followData)
+    }
+    const resp= await fetch(url, config);
+    const result=await resp.text();
+}catch(err){
+    console.log(err);
+}
+}
+
+//팔로잉 리스트
+async function spreadFollowingList(id){
+console.log(id);
+try{
+    const resp=await fetch('/member/followinglist/'+id);
+    const result=await resp.json();
+    return result;
+}catch(err){
+    console.log(err);
+}
+}
+
+function getFollowList(id,ses){
+    let sesfollowingList=[];
+    spreadFollowingList(ses).then(result=>{
+        console.log(ses);
+        const followzone=document.getElementById('followZone');
+        for(let user of result){
+            if(user.id==ses){
+                sesfollowingList=user.following.split(",");
+                console.log('ses의 팔로잉 리스트'+followingList);
+                for( let following of sesfollowingList){
+                    if(following==id){
+                        document.querySelector('.followBtn').classList.add('unfollowBtn');
+                        document.querySelector('.followBtn').textContent='언팔로우';
+                    }
+                }
+            }
+            
+        }
+    })
+
+    spreadFollowingList(id).then(result=>{
+        console.log('팔로잉리스트',result);
+        const followingbody=document.getElementById('followingtable');
+        let followingCnt=0;
+        let followingList=[];
+        for(let user of result){
+           if(user.follower != null&& user.follower!==''){
+               let list1=user.follower.split(",");
+               console.log(list1);
+
+               for(let following of list1){
+                   if(following ==id){
+                    followingList.push(following);
+                       let table=`<tr><td><img alt="" src="/upload/profile/${user.imgFile }" style="width: 60px; height: 60px;"></td>`;
+                       table +=`<td><a href="/member/mypage?id=${user.id}">${user.id }</a></td>`;
+                      if(user.id!=ses){
+                          table +=`<td><button type="button" class="followBtn unfollowBtn" data-id="${user.id}" data-ses="${ses}">언팔로우</button></td>`;
+                      }
+                      table+=`</tr>`;
+                       
+                       followingbody.innerHTML+=table;
+                       followingCnt++;
+                   }
+
+               }
+            }
+            
+        }
+        if (followingCnt === 0) {
+            followingbody.innerHTML = '<h3>팔로잉 목록이 없습니다.</h3>';
+        }
+        document.getElementById('followingCnt').innerHTML=`팔로잉 ${followingCnt}명`;
+        console.log('팔로잉리스트',followingList);
+
+        const followerbody=document.getElementById('followertable');
+        let followerCnt=0;
+        let followerList=[];
+        for(let user of result){
+           if(user.following != null&&user.following!==''){
+               let list2=user.following.split(",");
+               console.log(list2);
+
+               for(let follower of list2){
+                   if(follower ==id){
+                    followerList.push(follower);
+                       let table=`<tr><td><img alt="" src="/upload/profile/${user.imgFile }" style="width: 60px; height: 60px;"></td>`;
+                       table +=`<td><a href="/member/mypage?id=${user.id}">${user.id }</a></td>`;
+                       if(user.id!=ses){
+                        if(sesfollowingList.includes(user.id)){
+                            table +=`<td><button type="button" class="followBtn unfollowBtn" data-id="${user.id}" data-ses="${ses}">언팔로우</button></td>`;
+                        }else{
+                            table +=`<td><button type="button" class="followBtn" data-id="${user.id}" data-ses="${ses}">팔로우</button></td>`;
+                        }
+                    }
+                        table+=`</tr>`;
+                       followerbody.innerHTML+=table;
+                    followerCnt++;
+                   }
+
+               }
+            }
+            
+        }
+        if (followerCnt === 0) {
+            followerbody.innerHTML = '<h3>팔로워 목록이 없습니다.</h3>';
+        }
+        document.getElementById('followerCnt').innerHTML=`팔로워 ${followerCnt}명`;
+        console.log('팔로워리스트',followerList);
+
+        
+       
+        
+    })
+}
+
+
+async function unfollowUser(id, ses){
+    let followData={
+        following: id,
+        follower: ses
+    }
+   
+try{
+    const url='/member/';
+    const config={
+        method:"delete",
+        headers:{
+            'content-type':'application/json; charset=utf-8'
+        },
+        body:JSON.stringify(followData)
+    }
+    const resp= await fetch(url, config);
+    const result=await resp.text();
+}catch(err){
+    console.log(err);
+}
+}
+
+
+
+// //좋아요 이미지
+// function imageList(id){
+//     mylikeimages.then(result=>{
+//         console.log(result);
+//     })
+//     }
+    
+//     async function mylikeimages(){
+//         try{
+//             const resp=await fetch('/board/mylikeimages');
+//             const result=await resp.json();
+//             return result;
+    
+//         }catch(err){
+//             console.log(err);
+//         }
+//     }
+
+
+let i = 39; //마지막으로 만들어진 div
+let isHandlingScroll = false; // 중복 실행 방지를 위한 변수
+const boxCount = 40; // 한 번에 생성할 박스 개수
+let pag = 2; //불러올 시작 페이지
+
+function handleScroll() {
+  if (isHandlingScroll) {
+    return; // 이미 실행 중인 경우, 더 이상의 처리를 하지 않고 종료
+  }
+  isHandlingScroll = true; // 실행 중 표시
+
+  let myDiv = document.getElementById('box' + i);
+  let rect = myDiv.getBoundingClientRect();
+  let windowHeight = window.innerHeight || document.documentElement.clientHeight;
+  let viewportY = (windowHeight / 4) * 3;
+
+
+  if (rect.top + rect.height / 2 < viewportY) {
+    console.log('div' + i + '가 화면의 중앙보다 위에 있습니다.');
+    let keyword = document.getElementById('id').value;//검색어 가지고오기
+
+    getBoardList(pag,keyword).then(async result => {
+        if (result.length > 0) {
+            for (let bvo of result) {
+            console.log(bvo.likeUser);
+          i += 1;
+          let previousDiv = document.getElementById(`box${i-1}`);
+         
+          previousDiv.insertAdjacentHTML('afterend', `
+          <div class="pp" id="box${i}">
+					  <div class="contentBox" data-bno="${bvo.bno}" data-title="${bvo.title}" data-pushId="${sesId }" data-pushName="${sesName }" data-id="${bvo.id }">
+					  	<a href="/board/detail?bno=${bvo.bno}"><button class="hid hiddenText">aa</button></a>
+					  	${bvo.bno } <br>
+					  	♡<span class="tspan">${bvo.likeCount }</span><button class="likeBtn hid hiddenText">좋아요</button><br>
+					  </div>
+				  </div>
+          `);
+          console.log('div' + i + '생성!');
+        }
+        toggleClass();
+      }
+      pag += 1;
+      console.log("다음 페이지 : " + pag);
+      isHandlingScroll = false; // 실행 종료 표시
+    });
+
+  } else {
+    isHandlingScroll = false; // 실행 종료 표시
+  }
+}
+
+// 스크롤 이벤트에 handleScroll 함수를 연결합니다.
+window.addEventListener('scroll', handleScroll);
+
+//페이지 가지고오기
+async function getBoardList(pageNo,keyword) {
+  console.log("가지고온 페이지: " +pageNo);
+
+  try {
+    const resp = await fetch('/board/likelist/' + pageNo+'-'+keyword);
+    const result = await resp.json();
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+}
+//게시글 클릭시
+document.addEventListener('click',(e)=>{
+  let div = e.target.closest('div');
+  let bno = div.dataset.bno;
+  let title = div.dataset.title;
+  let id = div.dataset.id;
+  let pushId = div.dataset.pushId;
+  let pushName = div.dataset.pushName;
+  console.log("bno : "+title+", id : "+id+", pushId : "+pushId);
+
+  if(e.target.classList.contains('likeBtn')){//좋아요 취소
+    likeUp(bno).then(result=>{
+      console.log(result);
+      e.target.classList.remove('likeBtn');
+      e.target.classList.add('hateBtn');
+      let tspanElement = div.querySelector('.tspan');
+      tspanElement.textContent = result;
+    })
+    let pushType = 0;
+    putalarm(bno,title,id,pushId,pushName,pushType);
+
+  }else if (e.target.classList.contains('hateBtn')){//좋아요 취소
+    likeDown(bno).then(result=>{
+      console.log(result);
+      e.target.classList.remove('hateBtn');
+      e.target.classList.add('likeBtn');
+      let tspanElement = div.querySelector('.tspan');
+      tspanElement.textContent = result;
+    })
+  }
+});
+
+// 좋아요 +
+async function likeUp(bno) {
+  try {
+    const url = '/board/likeUp/' + bno;
+    const config = { method: 'put' };
+    const resp = await fetch(url, config);
+    const result = await resp.text();
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// 좋아요 -
+async function likeDown(bno) {
+  try {
+    const url = '/board/likeDown/' + bno;
+    const config = { method: 'put' };
+    const resp = await fetch(url, config);
+    const result = await resp.text();
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+function toggleClass() {
+  let contentBoxes = document.querySelectorAll('.contentBox');
+  console.log(contentBoxes);
+
+  contentBoxes.forEach((contentBox) => {
+    // 마우스 올렸을 때 
+    contentBox.addEventListener('mouseenter', (e) => {
+      const target = e.currentTarget;
+      target.classList.add('blackBox');
+      target.querySelectorAll('.hid').forEach((element) => {
+        element.classList.remove('hiddenText');
+      });
+    });
+
+    // 마우스 나갔을 때
+    contentBox.addEventListener('mouseleave', (e) => {
+      const target = e.currentTarget;
+      target.classList.remove('blackBox');
+      target.querySelectorAll('.hid').forEach((element) => {
+        element.classList.add('hiddenText');
+      });
+    });
+  });
+}
+
+toggleClass();
+
+
+
+    // 초기에 좋아요 탭을 활성화 상태로 설정
+    $(document).ready(function() {
+        $('.nav-tabs .nav-link').click(function() {
+            // 활성 탭 스타일 변경
+            $('.nav-tabs .nav-link').removeClass('active');
+            $(this).addClass('active');
+
+            // 클릭한 탭에 해당하는 내용 표시
+            var tabId = $(this).attr('href');
+            $('.tab-content > div').hide();
+            $(tabId).show();
+
+            return false; // 기본 클릭 동작 방지
+        });
+
+        // 초기에 좋아요 탭 내용 표시
+        $('#myLikeTab').show();
+        $('#myPostTab').hide();
+    });
+

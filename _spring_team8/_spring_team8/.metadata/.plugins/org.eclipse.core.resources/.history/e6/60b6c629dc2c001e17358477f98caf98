@@ -1,0 +1,20 @@
+const nextBtns = document.querySelectorAll(".nextb");
+const previousBtns = document.querySelectorAll(".previousb");
+const midBox = document.getElementById("NJmidbox");
+let divlength = 0;
+
+nextBtns.forEach((button) => {
+  button.addEventListener("click", () => {
+    console.log("앞으로");
+    divlength -= 400;
+    midBox.style.transform = `translateX(${divlength}px)`;
+  });
+});
+
+previousBtns.forEach((button) => {
+  button.addEventListener("click", () => {
+    console.log("뒤로");
+    divlength += 400;
+    midBox.style.transform = `translateX(${divlength}px)`;
+  });
+});

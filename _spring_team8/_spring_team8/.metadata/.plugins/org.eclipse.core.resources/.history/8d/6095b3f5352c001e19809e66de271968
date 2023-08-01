@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+.joinBigBox {
+	position: relative;
+	overflow: hidden;
+	width: 400px;
+	height: 400px;
+	background-color: #ff80c0;
+	overflow: hidden;
+}
+
+.joinMidBox {
+	position: absolute;
+	width: 1200px;
+
+	background-color: #80ffff;
+	width: 2400px;
+}
+
+.joinMinBox {
+	width: 400px;
+	height: 400px;
+	display: inline-block;
+}
+
+.joinMinBox1 {
+	background-color: #ff8000;
+}
+
+.joinMinBox2 {
+	background-color: #87f38f;
+}
+
+.joinMinBox3 {
+	background-color: #8080ff;
+}
+.nextb{
+	width: 100px;
+	height: 20px;
+	bottom: 10px;
+	right: 10px;
+}

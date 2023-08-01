@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+.njBBingBox {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.njtextBox{
+	width: 400px;
+	height: 100px;
+	background-color: gray;
+	text-align: center;
+}
+
+.joinBigBox {
+	position: relative;
+	overflow: hidden;
+	height: 400px;
+	width:400px;
+	background-color: #ff80c0;
+}
+
+.joinMidBox {
+	position: absolute;
+	width: 1200px;
+	background-color: #80ffff;
+	font-size: 0;
+	transition: transform 0.3s ease;
+}
+
+.joinMinBox {
+	height: 400px;
+	display: inline-block;
+	width: 400px;
+	padding: 10px;
+}
+
+.joinMinBox1 {
+	background-color: #ff8000;
+}
+
+.joinMinBox2 {
+	background-color: #87f38f;
+}
+
+.joinMinBox3 {
+	background-color: #8080ff;
+}
+
+.njallbten {
+	width: 60px;
+	height: 20px;
+}
